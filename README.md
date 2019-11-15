@@ -25,7 +25,7 @@ https://community.tt-rss.org/t/docker-compose-tt-rss/2894
 1. Check out scripts from Git:
 
 ```
-git clone https://git.tt-rss.org/fox/ttrss-docker-compose.git ttrss-docker
+git clone https://git.tt-rss.org/fox/ttrss-docker-compose.git ttrss-docker && cd ttrss-docker
 ```
 
 2. Edit ``.env`` and/or ``docker-compose.yml`` if necessary
@@ -34,11 +34,7 @@ You will probably have to edit ``SELF_URL_PATH`` which should equal fully qualif
 URL as seen when opening it in your web browser. If this field is set incorrectly, you will
 likely see the correct value in the tt-rss fatal error message.
 
-3. Run the container:
-
-```
-cd ttrss-docker && docker-compose up
-```
+3. Build and start the container: ``docker-compose up``
 
 See docker-compose documentation for more information and available options.
 
