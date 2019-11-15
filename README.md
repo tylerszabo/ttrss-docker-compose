@@ -20,6 +20,52 @@ Post your feedback here:
 
 https://community.tt-rss.org/t/docker-compose-tt-rss/2894
 
+### Installation
+
+1. Check out scripts from Git:
+
+```
+git clone https://git.tt-rss.org/fox/ttrss-docker-compose.git ttrss-docker
+```
+
+2. Edit ``.env`` and/or ``docker-compose.yml`` if necessary
+
+You will probably have to edit ``SELF_URL_PATH`` which should equal fully qualified tt-rss
+URL as seen when opening it in your web browser. If this field is set incorrectly, you will
+likely see the correct value in the tt-rss fatal error message.
+
+3. Run the container:
+
+```
+cd ttrss-docker && docker-compose up
+```
+
+See docker-compose documentation for more information and available options.
+
+### Updating
+
+Restarting the container will update the source from origin repository.
+
+### How do I add plugins and themes?
+
+By default, tt-rss code is stored on a persistent docker volume (``app``). You can find
+its location like this: ``docker volume inspect ttrss-docker_app | grep Mountpoint``
+
+Alternatively, you can mount any host directory as ``/var/www/html`` by updating ``docker-compose.yml``, i.e.:
+
+```
+volumes:
+      - app:/var/www/html
+```
+
+Replace with:
+
+```
+volumes:
+      - /opt/tt-rss:/var/www/html
+```
+
+Copy and/or git clone any third party plugins into ``plugins.local`` as usual.
 
 ### TODO
 
