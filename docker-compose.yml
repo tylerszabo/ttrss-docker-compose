@@ -14,7 +14,12 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
 
   app:
-    build: ./app
+    build: 
+      context:
+        ./app
+      args:
+        - OWNER_UID=${OWNER_UID}
+        - OWNER_GID=${OWNER_GID}
     restart: unless-stopped
     environment:
       - DB_TYPE=pgsql
@@ -22,6 +27,8 @@ services:
       - DB_NAME=${POSTGRES_USER}
       - DB_USER=${POSTGRES_USER}
       - DB_PASS=${POSTGRES_PASSWORD}
+      - OWNER_UID=${OWNER_UID}
+      - OWNER_GID=${OWNER_GID}
       - SELF_URL_PATH=http://localhost:8280/tt-rss
     volumes:
       - html:/var/www/html
@@ -34,7 +41,7 @@ services:
     ports:
       - 8280:80
     volumes:
-      - html:/var/www/html
+      - html:/var/www/html:ro
     depends_on:
       - app
 
