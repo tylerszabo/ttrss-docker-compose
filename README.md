@@ -24,5 +24,5 @@ https://community.tt-rss.org/t/docker-compose-tt-rss/2894
 ### TODO
 
 	- support for sending mail somehow (smtp mailer?)
-	- properly deal with ``SELF_URL_PATH ``
+	- properly deal with ``SELF_URL_PATH``
 	
