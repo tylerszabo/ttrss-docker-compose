@@ -42,6 +42,11 @@ if [ ! -s $DST_DIR/config.php ]; then
 		-e "s/define('PLUGINS'.*/define('PLUGINS', 'auth_internal, note, nginx_xaccel');/" \
 		-e "s/define('SELF_URL_PATH'.*/define('SELF_URL_PATH','$SELF_URL_PATH');/" \
 		< $DST_DIR/config.php-dist > $DST_DIR/config.php
+
+	cat >> $DST_DIR/config.php << EOF
+		define('NGINX_XACCEL_PREFIX', '/tt-rss');
+EOF
+	
 fi
 
 crond &
