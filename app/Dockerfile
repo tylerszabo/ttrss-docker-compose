@@ -8,6 +8,7 @@ RUN apk add --no-cache php7 php7-fpm \
 	git postgresql-client dcron sudo
 
 ADD startup.sh /
+ADD index.php /
 ADD scripts/update /etc/periodic/15min/
 
 RUN sed -i.bak 's/^listen = 127.0.0.1:9000/listen = 9000/' /etc/php7/php-fpm.d/www.conf

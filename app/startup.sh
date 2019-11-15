@@ -5,6 +5,8 @@ SRC_REPO=https://git.tt-rss.org/fox/tt-rss.git
 
 export PGPASSWORD=$DB_PASS 
 
+[ ! -e /var/www/html/index.php ] && cp /index.php /var/www/html
+
 PSQL="psql -q -h $DB_HOST -U $DB_USER $DB_NAME"
 
 if [ ! -d $DST_DIR ]; then
