@@ -1,6 +1,6 @@
 # A primitive set of scripts to deploy tt-rss via docker-compose
 
-**experimental stuff, don't use in production**
+**EXPERIMENTAL STUFF, DON'T USE IN PRODUCTION**
 
 The idea is to provide tt-rss working (and updating) out of the box
 with minimal fuss.
@@ -24,7 +24,5 @@ https://community.tt-rss.org/t/docker-compose-tt-rss/2894
 ### TODO
 
 	- support for sending mail somehow (smtp mailer?)
-	- properly deal with SELF\_URL\_PATH 
-	- nginx xaccel for static files in cache/
-	- separate owner user w/ configurable UID/GID
-
+	- properly deal with ``SELF_URL_PATH ``
+	
