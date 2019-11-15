@@ -1,0 +1,7 @@
+#!/bin/sh
+
+DST_DIR=/var/www/html/tt-rss
+
+if [ -s $DST_DIR/config.php ]; then
+	sudo -u nobody $DST_DIR/update.php --feeds
+fi

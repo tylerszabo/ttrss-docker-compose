@@ -1,0 +1,43 @@
+version: '3'
+
+# set database password in .env
+# please don't use quote (') or (") symbols in variables
+
+services:
+  db:
+    image: postgres:12-alpine
+    restart: unless-stopped
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:    
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER}
+
+  app:
+    build: ./app
+    restart: unless-stopped
+    environment:
+      - DB_TYPE=pgsql
+      - DB_HOST=db
+      - DB_NAME=${POSTGRES_USER}
+      - DB_USER=${POSTGRES_USER}
+      - DB_PASS=${POSTGRES_PASSWORD}
+      - SELF_URL_PATH=http://localhost:8280/tt-rss
+    volumes:
+      - html:/var/www/html
+    depends_on:
+      - db
+
+  web:
+    build: ./web
+    restart: unless-stopped
+    ports:
+      - 8280:80
+    volumes:
+      - html:/var/www/html
+    depends_on:
+      - app
+
+volumes:
+  db:
+  html:  
