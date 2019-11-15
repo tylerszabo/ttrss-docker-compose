@@ -16,10 +16,6 @@ The general outline of the configuration is as follows:
  - SSL termination not included, use a sidecar container for that (TODO)
  - tt-rss code is stored on a persistent volume so plugins, etc. could be easily added
 
-Post your feedback here:
-
-https://community.tt-rss.org/t/docker-compose-tt-rss/2894
-
 ### Installation
 
 #### Check out scripts from Git:
