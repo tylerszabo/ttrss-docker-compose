@@ -44,7 +44,8 @@ See docker-compose documentation for more information and available options.
 
 ### Updating
 
-Restarting the container will update the source from origin repository.
+Restarting the container will update the source from origin repository. If database needs to be updated,
+tt-rss will prompt you to do so on next page refresh.
 
 ### How do I add plugins and themes?
 
