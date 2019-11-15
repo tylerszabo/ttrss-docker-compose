@@ -9,10 +9,13 @@ The general outline of the configuration is as follows:
 - nginx has its http port exposed to the outside
 - feed updating is done via embedded cron job, every 15 minutes
 - tt-rss source updates from git master repository on container restart
-- schema is installed automatically on first startup
+- schema is installed automatically if it is missing
+- config.php is generated if it is missing
 - SSL termination not included, you use a sidecar container for that
+- tt-rss code is exposed on a persistent volume so plugins, etc. could be easily added
 
 Post your feedback here:
 
 https://community.tt-rss.org/t/docker-compose-tt-rss/2894
+
 
