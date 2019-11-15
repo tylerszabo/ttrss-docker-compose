@@ -74,3 +74,6 @@ Copy and/or git clone any third party plugins into ``plugins.local`` as usual.
  - support for sending mail somehow (smtp mailer?)
  - properly deal with ``SELF_URL_PATH``
 	
+### Feedback / suggestions
+
+[Forum thread](https://community.tt-rss.org/t/docker-compose-tt-rss/2894)
