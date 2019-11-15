@@ -49,7 +49,9 @@ Restarting the container will update the source from origin repository.
 ### How do I add plugins and themes?
 
 By default, tt-rss code is stored on a persistent docker volume (``app``). You can find
-its location like this: ``docker volume inspect ttrss-docker_app | grep Mountpoint``
+its location like this: 
+
+``docker volume inspect ttrss-docker_app | grep Mountpoint``
 
 Alternatively, you can mount any host directory as ``/var/www/html`` by updating ``docker-compose.yml``, i.e.:
 
