@@ -1,6 +1,6 @@
 # A primitive set of scripts to deploy tt-rss via docker-compose
 
-**EXPERIMENTAL STUFF, DON'T USE IN PRODUCTION**
+**EXPERIMENTAL STUFF, DON'T USE IN PRODUCTION YET**
 
 The idea is to provide tt-rss working (and updating) out of the box
 with minimal fuss.
