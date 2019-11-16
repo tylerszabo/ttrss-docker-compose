@@ -90,9 +90,8 @@ You will need to set ``SELF_URL_PATH`` to a correct (i.e. visible from the outsi
 
 ### TODO
 
- - support for sending mail somehow (smtp mailer?)
- - properly deal with ``SELF_URL_PATH``
-	
+- [wiki/TODO](https://git.tt-rss.org/fox/ttrss-docker-compose/wiki/TODO)
+ 	
 ### Suggestions / bug reports
 
- - [Forum thread](https://community.tt-rss.org/t/docker-compose-tt-rss/2894)
+- [Forum thread](https://community.tt-rss.org/t/docker-compose-tt-rss/2894)
