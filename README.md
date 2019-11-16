@@ -43,7 +43,7 @@ tt-rss will prompt you to do so on next page refresh.
 
 ### Using SSL with Letsencrypt (untested!)
 
- - HTTP_HOST should be set to a valid hostname (i.e. no localhost or IP address)
+ - ``HTTP_HOST`` in ``.env`` should be set to a valid hostname (i.e. no localhost or IP address)
  - comment out web container, uncomment web-ssl in ``docker-compose.yml``
  - ports 80 and 443 should be externally accessible i.e. not blocked by firewall and/or conflicting with host services
 
