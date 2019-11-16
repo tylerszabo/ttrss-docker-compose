@@ -1,0 +1,8 @@
+{%HTTP_HOST%}
+tls ttrss@{%HTTP_HOST%}
+
+root /var/www/html
+log stdout
+errors stderr
+internal /tt-rss/cache
+fastcgi / app:9000 php
