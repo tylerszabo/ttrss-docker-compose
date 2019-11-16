@@ -29,6 +29,8 @@ for d in cache lock feed-icons; do
 	chmod -R 777 $DST_DIR/$d
 done
 
+$PSQL -c "create extension if not exists pg_trgm"
+
 if ! $PSQL -c 'select * from ttrss_version'; then
 	$PSQL < /var/www/html/tt-rss/schema/ttrss_schema_pgsql.sql
 fi
