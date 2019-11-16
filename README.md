@@ -37,8 +37,15 @@ See docker-compose documentation for more information and available options.
 
 ### Updating
 
-Restarting the container will update the source from origin repository. If database needs to be updated,
+Restarting the container will update tt-rss from the origin repository. If database needs to be updated,
 tt-rss will prompt you to do so on next page refresh.
+
+#### Updating container scripts
+
+1. Stop the containers: ``docker-compose down && docker-compose rm``
+2. Update scripts from git: ``git pull origin master``
+3. Rebuild and start the containers: ``docker-compose up --build``
+
 
 ### Using SSL with Letsencrypt (untested!)
 
