@@ -43,7 +43,7 @@ tt-rss will prompt you to do so on next page refresh.
 #### Updating container scripts
 
 1. Stop the containers: ``docker-compose down && docker-compose rm``
-2. Update scripts from git: ``git pull origin master``
+2. Update scripts from git: ``git pull origin master`` and apply any necessary modifications to ``.env``, etc.
 3. Rebuild and start the containers: ``docker-compose up --build``
 
 
