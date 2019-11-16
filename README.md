@@ -1,6 +1,6 @@
 # A primitive set of scripts to deploy tt-rss via docker-compose
 
-**EXPERIMENTAL STUFF, DON'T USE IN PRODUCTION YET**
+**EXPERIMENTAL STUFF, DON'T USE IN PRODUCTION YET UNLESS YOU KNOW WHAT YOU'RE DOING**
 
 The idea is to provide tt-rss working (and updating) out of the box
 with minimal fuss.
@@ -15,10 +15,6 @@ The general outline of the configuration is as follows:
  - config.php is generated if it is missing
  - SSL termination not included, use a sidecar container for that (TODO)
  - tt-rss code is stored on a persistent volume so plugins, etc. could be easily added
-
-Post your feedback here:
-
-https://community.tt-rss.org/t/docker-compose-tt-rss/2894
 
 ### Installation
 
@@ -73,6 +69,6 @@ Copy and/or git clone any third party plugins into ``plugins.local`` as usual.
  - support for sending mail somehow (smtp mailer?)
  - properly deal with ``SELF_URL_PATH``
 	
-### Feedback / suggestions / bug reports
+### Suggestions / bug reports
 
-[Forum thread](https://community.tt-rss.org/t/docker-compose-tt-rss/2894)
+ - [Forum thread](https://community.tt-rss.org/t/docker-compose-tt-rss/2894)
