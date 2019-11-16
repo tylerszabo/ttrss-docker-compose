@@ -70,11 +70,28 @@ volumes:
 
 Copy and/or git clone any third party plugins into ``plugins.local`` as usual.
 
+### How do I put this container behind a reverse proxy?
+
+A common pattern is shared nginx doing SSL termination, etc.
+
+```
+   location /tt-rss/ {
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $remote_addr;
+      proxy_set_header X-Forwarded-Proto $scheme;
+
+      proxy_pass http://127.0.0.1:8280/tt-rss/;
+      break;
+   }
+```
+
+You will need to set ``SELF_URL_PATH`` to a correct (i.e. visible from the outside) value in ``config.php`` inside the container.
+
 ### TODO
 
- - support for sending mail somehow (smtp mailer?)
- - properly deal with ``SELF_URL_PATH``
-	
+- [wiki/TODO](https://git.tt-rss.org/fox/ttrss-docker-compose/wiki/TODO)
+ 	
 ### Suggestions / bug reports
 
- - [Forum thread](https://community.tt-rss.org/t/docker-compose-tt-rss/2894)
+- [Forum thread](https://community.tt-rss.org/t/docker-compose-tt-rss/2894)
