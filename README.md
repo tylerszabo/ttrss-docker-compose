@@ -41,6 +41,12 @@ See docker-compose documentation for more information and available options.
 Restarting the container will update the source from origin repository. If database needs to be updated,
 tt-rss will prompt you to do so on next page refresh.
 
+### Using SSL with Letsencrypt (untested!)
+
+ - HTTP_HOST should be set to a valid hostname (i.e. no localhost or IP address)
+ - comment out web container, uncomment web-ssl in ``docker-compose.yml``
+ - ports 80 and 443 should be externally accessible i.e. not blocked by firewall and/or conflicting with host services
+
 ### How do I add plugins and themes?
 
 By default, tt-rss code is stored on a persistent docker volume (``app``). You can find
