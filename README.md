@@ -70,6 +70,22 @@ volumes:
 
 Copy and/or git clone any third party plugins into ``plugins.local`` as usual.
 
+### How do I put this container behind a reverse proxy?
+
+A common pattern is shared nginx doing SSL termination, etc.
+
+```
+   location /tt-rss/ {
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $remote_addr;
+      proxy_set_header X-Forwarded-Proto $scheme;
+
+      proxy_pass http://127.0.0.1:8280/tt-rss/;
+      break;
+   }
+```
+
 ### TODO
 
  - support for sending mail somehow (smtp mailer?)
