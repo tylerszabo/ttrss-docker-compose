@@ -1,5 +1,10 @@
 #!/bin/sh -ex
 
+while ! pg_isready -h $DB_HOST; do
+	echo waiting until $DB_HOST is ready...
+	sleep 3
+done
+
 DST_DIR=/var/www/html/tt-rss
 SRC_REPO=https://git.tt-rss.org/fox/tt-rss.git
 
