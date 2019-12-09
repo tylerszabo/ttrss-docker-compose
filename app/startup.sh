@@ -1,6 +1,6 @@
 #!/bin/sh -ex
 
-while ! pg_isready -h $DB_HOST; do
+while ! pg_isready -h $DB_HOST -U $DB_USER; do
 	echo waiting until $DB_HOST is ready...
 	sleep 3
 done
