@@ -1,9 +1,8 @@
 # A primitive set of scripts to deploy tt-rss via docker-compose
 
-**EXPERIMENTAL STUFF, DON'T USE IN PRODUCTION YET UNLESS YOU KNOW WHAT YOU'RE DOING**
+The idea is to provide tt-rss working (and updating) out of the box with minimal fuss.
 
-The idea is to provide tt-rss working (and updating) out of the box
-with minimal fuss.
+Not fully tested yet, don't use in production unless you know what you're doing. Some features may be unimplemented or broken, check the [TODO](https://git.tt-rss.org/fox/ttrss-docker-compose/wiki/TODO).
 
 The general outline of the configuration is as follows:
 
@@ -38,8 +37,15 @@ See docker-compose documentation for more information and available options.
 
 ### Updating
 
-Restarting the container will update the source from origin repository. If database needs to be updated,
+Restarting the container will update tt-rss from the origin repository. If database needs to be updated,
 tt-rss will prompt you to do so on next page refresh.
+
+#### Updating container scripts
+
+1. Stop the containers: ``docker-compose down && docker-compose rm``
+2. Update scripts from git: ``git pull origin master`` and apply any necessary modifications to ``.env``, etc.
+3. Rebuild and start the containers: ``docker-compose up --build``
+
 
 ### Using SSL with Letsencrypt (untested!)
 
@@ -70,11 +76,28 @@ volumes:
 
 Copy and/or git clone any third party plugins into ``plugins.local`` as usual.
 
+### How do I put this container behind a reverse proxy?
+
+A common pattern is shared nginx doing SSL termination, etc.
+
+```
+   location /tt-rss/ {
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $remote_addr;
+      proxy_set_header X-Forwarded-Proto $scheme;
+
+      proxy_pass http://127.0.0.1:8280/tt-rss/;
+      break;
+   }
+```
+
+You will need to set ``SELF_URL_PATH`` to a correct (i.e. visible from the outside) value in ``config.php`` inside the container.
+
 ### TODO
 
- - support for sending mail somehow (smtp mailer?)
- - properly deal with ``SELF_URL_PATH``
-	
+- [wiki/TODO](https://git.tt-rss.org/fox/ttrss-docker-compose/wiki/TODO)
+ 	
 ### Suggestions / bug reports
 
- - [Forum thread](https://community.tt-rss.org/t/docker-compose-tt-rss/2894)
+- [Forum thread](https://community.tt-rss.org/t/docker-compose-tt-rss/2894)

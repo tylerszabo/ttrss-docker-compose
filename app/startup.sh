@@ -1,5 +1,10 @@
 #!/bin/sh -ex
 
+while ! pg_isready -h $DB_HOST; do
+	echo waiting until $DB_HOST is ready...
+	sleep 3
+done
+
 DST_DIR=/var/www/html/tt-rss
 SRC_REPO=https://git.tt-rss.org/fox/tt-rss.git
 
@@ -32,6 +37,8 @@ chmod +x /etc/periodic/15min/*
 for d in cache lock feed-icons; do
 	chmod -R 777 $DST_DIR/$d
 done
+
+$PSQL -c "create extension if not exists pg_trgm"
 
 if ! $PSQL -c 'select * from ttrss_version'; then
 	$PSQL < /var/www/html/tt-rss/schema/ttrss_schema_pgsql.sql
