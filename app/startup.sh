@@ -40,7 +40,11 @@ done
 
 $PSQL -c "create extension if not exists pg_trgm"
 
-if ! $PSQL -c 'select * from ttrss_version'; then
+RESTORE_SCHEMA=/var/www/html/tt-rss/backups/restore-schema.sql.gz
+
+if [ -r $RESTORE_SCHEMA ]; then
+	zcat $RESTORE_SCHEMA | $PSQL
+elif ! $PSQL -c 'select * from ttrss_version'; then
 	$PSQL < /var/www/html/tt-rss/schema/ttrss_schema_pgsql.sql
 fi
 
