@@ -40,7 +40,7 @@ remove ``127.0.0.1:`` from ``HTTP_PORT`` variable in ``.env``.
 
 #### Build and start the container
 
-``docker-compose up``
+``docker-compose up --build``
 
 See docker-compose documentation for more information and available options.
 
