@@ -48,9 +48,9 @@ elif ! $PSQL -c 'select * from ttrss_version'; then
 	$PSQL < /var/www/html/tt-rss/schema/ttrss_schema_pgsql.sql
 fi
 
-if [ ! -s $DST_DIR/config.php ]; then
-	SELF_URL_PATH=$(echo $SELF_URL_PATH | sed -e 's/[\/&]/\\&/g')
+SELF_URL_PATH=$(echo $SELF_URL_PATH | sed -e 's/[\/&]/\\&/g')
 
+if [ ! -s $DST_DIR/config.php ]; then
 	sed \
 		-e "s/define('DB_HOST'.*/define('DB_HOST', '$DB_HOST');/" \
 		-e "s/define('DB_USER'.*/define('DB_USER', '$DB_USER');/" \
@@ -63,7 +63,10 @@ if [ ! -s $DST_DIR/config.php ]; then
 	cat >> $DST_DIR/config.php << EOF
 		define('NGINX_XACCEL_PREFIX', '/tt-rss');
 EOF
-	
+else
+	sed \
+		-e "s/define('SELF_URL_PATH'.*/define('SELF_URL_PATH','$SELF_URL_PATH');/" \
+		-i.bak $DST_DIR/config.php
 fi
 
 crond &

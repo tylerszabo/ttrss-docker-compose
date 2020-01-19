@@ -23,11 +23,20 @@ The general outline of the configuration is as follows:
 git clone https://git.tt-rss.org/fox/ttrss-docker-compose.git ttrss-docker && cd ttrss-docker
 ```
 
-#### Edit ``.env`` and/or ``docker-compose.yml`` if necessary
+#### Edit configuration files:
 
-You will probably have to edit ``SELF_URL_PATH`` which should equal fully qualified tt-rss
+Copy ``.env-dist`` to ``.env`` and edit any relevant variables you need changed.
+
+* You will likely have to change ``SELF_URL_PATH`` which should equal fully qualified tt-rss
 URL as seen when opening it in your web browser. If this field is set incorrectly, you will
 likely see the correct value in the tt-rss fatal error message.
+
+Note: ``SELF_URL_PATH`` is updated in generated tt-rss ``config.php`` automatically on container
+restart.
+
+* By default, container binds to **localhost** port **8280**. If you want the container to be
+accessible on the net, without using a reverse proxy sharing same host, you will need to
+remove ``127.0.0.1:`` from ``HTTP_PORT`` variable in ``.env``.
 
 #### Build and start the container
 
