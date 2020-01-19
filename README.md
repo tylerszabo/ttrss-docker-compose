@@ -101,7 +101,7 @@ A common pattern is shared nginx doing SSL termination, etc.
    }
 ```
 
-You will need to set ``SELF_URL_PATH`` to a correct (i.e. visible from the outside) value in ``config.php`` inside the container.
+You will need to set ``SELF_URL_PATH`` to a correct (i.e. visible from the outside) value in the ``.env`` file.
 
 ### TODO
 
