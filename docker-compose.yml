@@ -29,7 +29,7 @@ services:
       - DB_PASS=${POSTGRES_PASSWORD}
       - OWNER_UID=${OWNER_UID}
       - OWNER_GID=${OWNER_GID}
-      - SELF_URL_PATH=http://${HTTP_HOST}:${HTTP_PORT}/tt-rss
+      - SELF_URL_PATH=${SELF_URL_PATH}
     volumes:
       - app:/var/www/html
     depends_on:

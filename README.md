@@ -32,7 +32,7 @@ URL as seen when opening it in your web browser. If this field is set incorrectl
 likely see the correct value in the tt-rss fatal error message.
 
 Note: ``SELF_URL_PATH`` is updated in generated tt-rss ``config.php`` automatically on container
-restart.
+restart. You don't need to modify ``config.php`` manually for this.
 
 * By default, container binds to **localhost** port **8280**. If you want the container to be
 accessible on the net, without using a reverse proxy sharing same host, you will need to
