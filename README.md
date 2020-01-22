@@ -56,10 +56,11 @@ tt-rss will prompt you to do so on next page refresh.
 3. Rebuild and start the containers: ``docker-compose up --build``
 
 
-### Using SSL with Letsencrypt (untested!)
+### Using SSL with Letsencrypt
 
  - ``HTTP_HOST`` in ``.env`` should be set to a valid hostname (i.e. no localhost or IP address)
  - comment out ``web`` container, uncomment ``web-ssl`` in ``docker-compose.yml``
+ - ``SELF_URL_PATH`` in ``.env`` should not include a port as the container is going to use default https port
  - ports 80 and 443 should be externally accessible i.e. not blocked by firewall and/or conflicting with host services
 
 ### How do I add plugins and themes?
