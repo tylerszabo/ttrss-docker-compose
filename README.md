@@ -6,7 +6,7 @@ Not fully tested yet, don't use in production unless you know what you're doing.
 
 The general outline of the configuration is as follows:
 
- - three linked containers (frontend: caddy, database: pgsql, application: php/fpm)
+ - separate containers (frontend: caddy, database: pgsql, app and updater: php/fpm)
  - caddy has its http port exposed to the outside
  - feed updates are handled via update daemon started in a separate container (updater)
  - tt-rss source updates from git master repository on container restart
