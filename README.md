@@ -8,7 +8,7 @@ The general outline of the configuration is as follows:
 
  - three linked containers (frontend: caddy, database: pgsql, application: php/fpm)
  - caddy has its http port exposed to the outside
- - feed updating is done via embedded cron job, every 15 minutes
+ - feed updates are handled via update daemon started in a separate container (updater)
  - tt-rss source updates from git master repository on container restart
  - schema is installed automatically if it is missing
  - config.php is generated if it is missing
