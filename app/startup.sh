@@ -32,7 +32,6 @@ else
 fi
 
 chown -R $OWNER_UID:$OWNER_GID $DST_DIR
-chmod +x /etc/periodic/15min/*
 
 for d in cache lock feed-icons; do
 	chmod -R 777 $DST_DIR/$d
@@ -68,8 +67,6 @@ else
 		-e "s/define('SELF_URL_PATH'.*/define('SELF_URL_PATH','$SELF_URL_PATH');/" \
 		-i.bak $DST_DIR/config.php
 fi
-
-crond &
 
 exec /usr/sbin/php-fpm7 -F
 

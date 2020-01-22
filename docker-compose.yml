@@ -35,6 +35,21 @@ services:
     depends_on:
       - db
 
+  updater:
+    build:
+      context:
+        ./app
+      args:
+        - OWNER_UID=${OWNER_UID}
+        - OWNER_GID=${OWNER_GID}
+    restart: unless-stopped
+    volumes:
+      - app:/var/www/html
+    depends_on:
+      - app
+    user: app
+    command: "php /var/www/html/tt-rss/update_daemon2.php"
+
   web:
     build: ./web
     restart: unless-stopped
