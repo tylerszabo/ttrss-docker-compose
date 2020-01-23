@@ -3,8 +3,10 @@
 # wait for the app container to delete .app_is_ready and perform rsync, etc.
 sleep 30
 
-addgroup -g $OWNER_GID app
-adduser -D -h /var/www/html -G app -u $OWNER_UID app
+if ! id app; then
+	addgroup -g $OWNER_GID app
+	adduser -D -h /var/www/html -G app -u $OWNER_UID app
+fi
 
 while ! pg_isready -h $DB_HOST -U $DB_USER; do
 	echo waiting until $DB_HOST is ready...

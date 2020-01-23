@@ -5,8 +5,10 @@ while ! pg_isready -h $DB_HOST -U $DB_USER; do
 	sleep 3
 done
 
-addgroup -g $OWNER_GID app
-adduser -D -h /var/www/html -G app -u $OWNER_UID app
+if ! id app; then
+	addgroup -g $OWNER_GID app
+	adduser -D -h /var/www/html -G app -u $OWNER_UID app
+fi
 
 DST_DIR=/var/www/html/tt-rss
 SRC_REPO=https://git.tt-rss.org/fox/tt-rss.git
