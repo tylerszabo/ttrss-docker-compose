@@ -43,12 +43,21 @@ services:
         - OWNER_UID=${OWNER_UID}
         - OWNER_GID=${OWNER_GID}
     restart: unless-stopped
+    environment:
+      - DB_TYPE=pgsql
+      - DB_HOST=db
+      - DB_NAME=${POSTGRES_USER}
+      - DB_USER=${POSTGRES_USER}
+      - DB_PASS=${POSTGRES_PASSWORD}
+      - OWNER_UID=${OWNER_UID}
+      - OWNER_GID=${OWNER_GID}
+      - SELF_URL_PATH=${SELF_URL_PATH}
     volumes:
       - app:/var/www/html
     depends_on:
       - app
     user: app
-    command: "php /var/www/html/tt-rss/update_daemon2.php"
+    command: /updater.sh
 
   web:
     build: ./web
