@@ -14,9 +14,6 @@ ADD index.php /
 
 RUN sed -i.bak 's/^listen = 127.0.0.1:9000/listen = 9000/' /etc/php7/php-fpm.d/www.conf
 
-ARG OWNER_UID
-ARG OWNER_GID
-
-RUN mkdir -p /var/www && addgroup -g ${OWNER_GID} app && adduser -D -h /var/www/html -G app -u ${OWNER_UID} app
+RUN mkdir -p /var/www
 
 CMD /startup.sh

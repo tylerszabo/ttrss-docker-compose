@@ -3,6 +3,9 @@
 # wait for the app container to delete .app_is_ready and perform rsync, etc.
 sleep 30
 
+addgroup -g $OWNER_GID app
+adduser -D -h /var/www/html -G app -u $OWNER_UID app
+
 while ! pg_isready -h $DB_HOST -U $DB_USER; do
 	echo waiting until $DB_HOST is ready...
 	sleep 3
@@ -15,4 +18,4 @@ while [ ! -s $DST_DIR/config.php -a -e $DST_DIR/.app_is_ready ]; do
 	sleep 3
 done
 
-exec /usr/bin/php /var/www/html/tt-rss/update_daemon2.php
+sudo -u app /usr/bin/php /var/www/html/tt-rss/update_daemon2.php
