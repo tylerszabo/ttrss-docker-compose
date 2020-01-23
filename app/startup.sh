@@ -8,6 +8,8 @@ done
 DST_DIR=/var/www/html/tt-rss
 SRC_REPO=https://git.tt-rss.org/fox/tt-rss.git
 
+[ -e $DST_DIR ] && rm -f $DST_DIR/.app_is_ready
+
 export PGPASSWORD=$DB_PASS 
 
 [ ! -e /var/www/html/index.php ] && cp /index.php /var/www/html
@@ -67,6 +69,8 @@ else
 		-e "s/define('SELF_URL_PATH'.*/define('SELF_URL_PATH','$SELF_URL_PATH');/" \
 		-i.bak $DST_DIR/config.php
 fi
+
+touch $DST_DIR/.app_is_ready
 
 exec /usr/sbin/php-fpm7 -F
 
