@@ -23,7 +23,7 @@ General outline of the configuration is as follows:
 
 #### Check out scripts from Git:
 
-```
+```sh
 git clone https://git.tt-rss.org/fox/ttrss-docker-compose.git ttrss-docker && cd ttrss-docker
 ```
 
@@ -44,7 +44,9 @@ remove ``127.0.0.1:`` from ``HTTP_PORT`` variable in ``.env``.
 
 #### Build and start the container
 
-``docker-compose up --build``
+```sh
+docker-compose up --build
+```
 
 See docker-compose documentation for more information and available options.
 
@@ -70,20 +72,22 @@ tt-rss will prompt you to do so on next page refresh.
 ### How do I add plugins and themes?
 
 By default, tt-rss code is stored on a persistent docker volume (``app``). You can find
-its location like this: 
+its location like this:
 
-``docker volume inspect ttrss-docker_app | grep Mountpoint``
+```sh
+docker volume inspect ttrss-docker_app | grep Mountpoint
+```
 
 Alternatively, you can mount any host directory as ``/var/www/html`` by updating ``docker-compose.yml``, i.e.:
 
-```
+```yml
 volumes:
       - app:/var/www/html
 ```
 
 Replace with:
 
-```
+```yml
 volumes:
       - /opt/tt-rss:/var/www/html
 ```
@@ -94,7 +98,7 @@ Copy and/or git clone any third party plugins into ``plugins.local`` as usual.
 
 A common pattern is shared nginx doing SSL termination, etc.
 
-```
+```nginx
    location /tt-rss/ {
       proxy_set_header Host $host;
       proxy_set_header X-Real-IP $remote_addr;
@@ -108,10 +112,6 @@ A common pattern is shared nginx doing SSL termination, etc.
 
 You will need to set ``SELF_URL_PATH`` to a correct (i.e. visible from the outside) value in the ``.env`` file.
 
-### TODO
-
-- [wiki/TODO](https://git.tt-rss.org/fox/ttrss-docker-compose/wiki/TODO)
- 	
 ### Suggestions / bug reports
 
 - [Forum thread](https://community.tt-rss.org/t/docker-compose-tt-rss/2894)
