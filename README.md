@@ -2,18 +2,22 @@
 
 The idea is to provide tt-rss working (and updating) out of the box with minimal fuss.
 
-Not fully tested yet, don't use in production unless you know what you're doing. Some features may be unimplemented or broken, check the [TODO](https://git.tt-rss.org/fox/ttrss-docker-compose/wiki/TODO).
+This setup is still WIP. Some features may be unimplemented or broken. Check the following
+before deploying:
 
-The general outline of the configuration is as follows:
+- [TODO](https://git.tt-rss.org/fox/ttrss-docker-compose/wiki/TODO)
+- [FAQ](https://git.tt-rss.org/fox/ttrss-docker-compose/wiki#faq)
+
+General outline of the configuration is as follows:
 
  - separate containers (frontend: caddy, database: pgsql, app and updater: php/fpm)
- - caddy has its http port exposed to the outside
+ - tt-rss updates from git master repository on container restart
+ - tt-rss source code is stored on a persistent volume so plugins, etc. could be easily added
+ - ``config.php`` is generated if it is missing
+ - database schema is installed automatically if it is missing
+ - Caddy has its http port exposed to the outside
+ - optional SSL support via Caddy w/ automatic letsencrypt certificates
  - feed updates are handled via update daemon started in a separate container (updater)
- - tt-rss source updates from git master repository on container restart
- - schema is installed automatically if it is missing
- - config.php is generated if it is missing
- - SSL termination not included, use a sidecar container for that (TODO)
- - tt-rss code is stored on a persistent volume so plugins, etc. could be easily added
 
 ### Installation
 
