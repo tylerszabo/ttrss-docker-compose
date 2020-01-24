@@ -61,57 +61,6 @@ tt-rss will prompt you to do so on next page refresh.
 2. Update scripts from git: ``git pull origin master`` and apply any necessary modifications to ``.env``, etc.
 3. Rebuild and start the containers: ``docker-compose up --build``
 
-
-### Using SSL with Letsencrypt
-
- - ``HTTP_HOST`` in ``.env`` should be set to a valid hostname (i.e. no localhost or IP address)
- - comment out ``web`` container, uncomment ``web-ssl`` in ``docker-compose.yml``
- - ``SELF_URL_PATH`` in ``.env`` should not include a port as the container is going to use default https port
- - ports 80 and 443 should be externally accessible i.e. not blocked by firewall and/or conflicting with host services
-
-### How do I add plugins and themes?
-
-By default, tt-rss code is stored on a persistent docker volume (``app``). You can find
-its location like this:
-
-```sh
-docker volume inspect ttrss-docker_app | grep Mountpoint
-```
-
-Alternatively, you can mount any host directory as ``/var/www/html`` by updating ``docker-compose.yml``, i.e.:
-
-```yml
-volumes:
-      - app:/var/www/html
-```
-
-Replace with:
-
-```yml
-volumes:
-      - /opt/tt-rss:/var/www/html
-```
-
-Copy and/or git clone any third party plugins into ``plugins.local`` as usual.
-
-### How do I put this container behind a reverse proxy?
-
-A common pattern is shared nginx doing SSL termination, etc.
-
-```nginx
-   location /tt-rss/ {
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $remote_addr;
-      proxy_set_header X-Forwarded-Proto $scheme;
-
-      proxy_pass http://127.0.0.1:8280/tt-rss/;
-      break;
-   }
-```
-
-You will need to set ``SELF_URL_PATH`` to a correct (i.e. visible from the outside) value in the ``.env`` file.
-
 ### Suggestions / bug reports
 
 - [Forum thread](https://community.tt-rss.org/t/docker-compose-tt-rss/2894)
