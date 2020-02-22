@@ -1,11 +1,11 @@
-#!/bin/sh -ex
+#!/bin/sh -e
 
 while ! pg_isready -h $DB_HOST -U $DB_USER; do
 	echo waiting until $DB_HOST is ready...
 	sleep 3
 done
 
-if ! id app; then
+if ! id app >/dev/null 2>&1; then
 	addgroup -g $OWNER_GID app
 	adduser -D -h /var/www/html -G app -u $OWNER_UID app
 fi
@@ -21,21 +21,31 @@ export PGPASSWORD=$DB_PASS
 
 PSQL="psql -q -h $DB_HOST -U $DB_USER $DB_NAME"
 
-if [ ! -d $DST_DIR ]; then
+if [ ! -d $DST_DIR/.git ]; then
 	mkdir -p $DST_DIR
-	git clone $SRC_REPO $DST_DIR
+	echo cloning tt-rss source from $SRC_REPO to $DST_DIR...
+	git clone $SRC_REPO $DST_DIR || echo error: failed to clone master repository.
 else
+	echo updating tt-rss source in $DST_DIR from $SRC_REPO...
 	cd $DST_DIR && \
 		git config core.filemode false && \
-		git pull origin master
+		git pull origin master || echo error: unable to update master repository.
+fi
+
+if [ ! -e $DST_DIR/index.php ]; then
+	echo "error: tt-rss index.php missing (git clone failed?), unable to continue."
+	exit 1
 fi
 
 if [ ! -d $DST_DIR/plugins.local/nginx_xaccel ]; then
-	git clone https://git.tt-rss.org/fox/ttrss-nginx-xaccel.git $DST_DIR/plugins.local/nginx_xaccel
+	echo cloning plugins.local/nginx_xaccel...
+	git clone https://git.tt-rss.org/fox/ttrss-nginx-xaccel.git \
+		$DST_DIR/plugins.local/nginx_xaccel ||  echo error: failed to clone plugin repository.
 else
+	echo updating plugins.local/nginx_xaccel...
 	cd $DST_DIR/plugins.local/nginx_xaccel && \
 		git config core.filemode false && \
-	  	git pull origin master
+	  	git pull origin master || echo error: failed to update plugin repository.
 fi
 
 chown -R $OWNER_UID:$OWNER_GID $DST_DIR \

@@ -1,4 +1,4 @@
-#!/bin/sh -ex
+#!/bin/sh -e
 
 # wait for the app container to delete .app_is_ready and perform rsync, etc.
 sleep 30
