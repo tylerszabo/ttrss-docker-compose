@@ -73,7 +73,6 @@ if [ ! -s $DST_DIR/config.php ]; then
 		-e "s/define('DB_USER'.*/define('DB_USER', '$DB_USER');/" \
 		-e "s/define('DB_NAME'.*/define('DB_NAME', '$DB_NAME');/" \
 		-e "s/define('DB_PASS'.*/define('DB_PASS', '$DB_PASS');/" \
-		-e "s/define('DB_HOST'.*/define('DB_HOST', '$DB_HOST');/" \
 		-e "s/define('DB_TYPE'.*/define('DB_TYPE', 'pgsql');/" \
 		-e "s/define('DB_PORT'.*/define('DB_PORT', 5432);/" \
 		-e "s/define('PLUGINS'.*/define('PLUGINS', 'auth_internal, note, nginx_xaccel');/" \
