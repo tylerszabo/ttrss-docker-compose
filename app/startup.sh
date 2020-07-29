@@ -11,7 +11,7 @@ if ! id app >/dev/null 2>&1; then
 fi
 
 DST_DIR=/var/www/html/tt-rss
-SRC_REPO=https://git.tt-rss.org/fox/tt-rss.git
+SRC_REPO=https://github.com/tylerszabo/tt-rss.git
 
 [ -e $DST_DIR ] && rm -f $DST_DIR/.app_is_ready
 
