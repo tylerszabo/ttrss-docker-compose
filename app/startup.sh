@@ -75,6 +75,7 @@ if [ ! -s $DST_DIR/config.php ]; then
 		-e "s/define('DB_PASS'.*/define('DB_PASS', '$DB_PASS');/" \
 		-e "s/define('DB_TYPE'.*/define('DB_TYPE', 'pgsql');/" \
 		-e "s/define('DB_PORT'.*/define('DB_PORT', 5432);/" \
+		-e "s/define('SESSION_COOKIE_LIFETIME'.*/define('SESSION_COOKIE_LIFETIME', 86400*365*50);/" \
 		-e "s/define('PLUGINS'.*/define('PLUGINS', 'auth_internal, note, nginx_xaccel');/" \
 		-e "s/define('SELF_URL_PATH'.*/define('SELF_URL_PATH','$SELF_URL_PATH');/" \
 		< $DST_DIR/config.php-dist > $DST_DIR/config.php
