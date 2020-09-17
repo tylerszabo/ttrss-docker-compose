@@ -52,7 +52,8 @@ chown -R $OWNER_UID:$OWNER_GID $DST_DIR \
 	/var/log/php7
 
 for d in cache lock feed-icons; do
-	chmod -R 777 $DST_DIR/$d
+	chmod 777 $DST_DIR/$d
+	find $DST_DIR/$d -type f -exec chmod 666 {} \;
 done
 
 $PSQL -c "create extension if not exists pg_trgm"
