@@ -3,4 +3,6 @@ root /var/www/html
 log stdout
 errors stderr
 internal /tt-rss/cache
+internal /tt-rss/backups
 fastcgi / app:9000 php
+
