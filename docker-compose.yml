@@ -32,6 +32,25 @@ services:
     depends_on:
       - db
 
+  backups:
+    build:
+      context:
+        ./app
+    restart: unless-stopped
+    environment:
+      - DB_TYPE=pgsql
+      - DB_HOST=db
+      - DB_NAME=${POSTGRES_USER}
+      - DB_USER=${POSTGRES_USER}
+      - DB_PASS=${POSTGRES_PASSWORD}
+      - OWNER_UID=${OWNER_UID}
+      - OWNER_GID=${OWNER_GID}
+    volumes:
+      - backups:/backups
+    depends_on:
+      - db
+    command: /dcron.sh -f
+
   updater:
     build:
       context:
@@ -91,3 +110,4 @@ volumes:
   db:
   app:  
   certs:
+  backups:

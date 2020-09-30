@@ -15,6 +15,7 @@ General outline of the configuration is as follows:
  - Caddy has its http port exposed to the outside
  - optional SSL support via Caddy w/ automatic letsencrypt certificates
  - feed updates are handled via update daemon started in a separate container (updater)
+ - optional backups container which performs tt-rss database backup once a week
 
 ### Installation
 
