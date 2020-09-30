@@ -47,6 +47,7 @@ services:
       - OWNER_GID=${OWNER_GID}
     volumes:
       - backups:/backups
+      - app:/var/www/html
     depends_on:
       - db
     command: /dcron.sh -f
