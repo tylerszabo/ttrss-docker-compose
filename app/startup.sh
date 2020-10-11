@@ -89,6 +89,9 @@ else
 		-i $DST_DIR/config.php
 fi
 
+# this was previously generated
+rm -f $DST_DIR/config.php.bak
+
 cd $DST_DIR && sudo -u app php ./update.php --update-schema=force-yes
 
 touch $DST_DIR/.app_is_ready
