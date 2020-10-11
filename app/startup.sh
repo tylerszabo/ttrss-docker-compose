@@ -86,7 +86,7 @@ EOF
 else
 	sed \
 		-e "s/define('SELF_URL_PATH'.*/define('SELF_URL_PATH','$SELF_URL_PATH');/" \
-		-i.bak $DST_DIR/config.php
+		-i $DST_DIR/config.php
 fi
 
 cd $DST_DIR && sudo -u app php ./update.php --update-schema=force-yes
